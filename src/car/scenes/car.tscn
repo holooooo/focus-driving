@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmjkwoae0oukl"]
+
+[ext_resource type="Texture2D" uid="uid://ccsm85kurj4o5" path="res://resource/cars/red_santana/body.png" id="1_h1ncx"]
+[ext_resource type="Script" uid="uid://dkron2jci6qdp" path="res://src/car/car.gd" id="2_rpiqy"]
+[ext_resource type="Texture2D" uid="uid://bp4qbumtgm0m6" path="res://resource/tires/normal.png" id="3_f26up"]
+
+[node name="Car" type="Sprite2D"]
+z_index = 2
+scale = Vector2(3, 3)
+texture = ExtResource("1_h1ncx")
+script = ExtResource("2_rpiqy")
+
+[node name="FrontWheel" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(35, 10)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_f26up")
+
+[node name="BackWheel" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-32, 10)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_f26up")
