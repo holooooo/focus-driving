@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dudhunpff0830"]
+
+[ext_resource type="Texture2D" uid="uid://dwq186evtohnl" path="res://resource/cars/muscle.png" id="1_t7apk"]
+[ext_resource type="Script" uid="uid://dkron2jci6qdp" path="res://src/car/car.gd" id="2_8mc8y"]
+[ext_resource type="Texture2D" uid="uid://krcf6ai34qxf" path="res://resource/tires/tires.png" id="3_1vi2p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgy7c"]
+atlas = ExtResource("1_t7apk")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqefh"]
+atlas = ExtResource("3_1vi2p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0viit"]
+size = Vector2(223.66667, 20)
+
+[node name="Car" type="Node2D"]
+script = ExtResource("2_8mc8y")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_mgy7c")
+
+[node name="FrontWheel" type="Sprite2D" parent="."]
+position = Vector2(134.66667, 45.666664)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_kqefh")
+
+[node name="BackWheel" type="Sprite2D" parent="."]
+position = Vector2(-117.333336, 45)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_kqefh")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="地面参考线" type="CollisionShape2D" parent="Node"]
+visible = false
+position = Vector2(0, 112)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_0viit")

@@ -1,10 +1,12 @@
-extends Sprite2D
-
+extends Node2D
+class_name Car
 
 @onready var front_wheel: Sprite2D = $FrontWheel
 @onready var back_wheel: Sprite2D = $BackWheel
+@onready var original_y: float = position.y
+@onready var original_scale: Vector2 = scale
 
-@export var roll_speed: float = 60
+@export var roll_speed: float = 30
 
 @export var flip: bool = false:
 	set(value):
@@ -23,17 +25,13 @@ enum CarState { LEFT, RIGHT, CENTER, STOP }
 @export var center_scale: float = 1.0
 @export var stop_scale: float = 1.2
 
-var target_roll_speed: float = 60
-var anim_time: float         = 0.3 # 动画时长
-var anim_timer: float        = 0.0
-var animating: bool          = false
-var start_scale: float       = 1.0
-var end_scale: float         = 1.0
-var start_roll_speed: float  = 60
-var end_roll_speed: float    = 60
-
-@onready var original_y: float = position.y
-@onready var original_scale: Vector2 = scale
+var anim_time: float        = 0.3 # 动画时长
+var anim_timer: float       = 0.0
+var animating: bool         = false
+var start_scale: float      = 1.0
+var end_scale: float        = 1.0
+var start_roll_speed: float = 60
+var end_roll_speed: float   = 60
 
 
 func _ready() -> void:
@@ -56,19 +54,14 @@ func _process(delta: float) -> void:
 			CarState.LEFT:
 				flip = true
 				position.x -= drive_speed * delta
-				roll_speed = target_roll_speed
+				rolling_wheel(delta)
 			CarState.RIGHT:
 				flip = false
 				position.x += drive_speed * delta
-				roll_speed = target_roll_speed
+				rolling_wheel(delta)
 			CarState.CENTER:
 				flip = false
-				roll_speed = target_roll_speed
-			# x不动
-			CarState.STOP:
-				roll_speed = 0
-	# x不动
-	rolling_wheel(delta)
+				rolling_wheel(delta)
 
 
 func _on_state_changed():
@@ -78,7 +71,7 @@ func _on_state_changed():
 		anim_timer = 0
 		start_scale = center_scale * original_scale.x
 		end_scale = stop_scale * original_scale.x
-		start_roll_speed = target_roll_speed
+		start_roll_speed = roll_speed
 		end_roll_speed = 0
 	elif car_state == CarState.CENTER:
 		# 停止到居中，轮速渐变为正常，缩小动画
@@ -87,7 +80,7 @@ func _on_state_changed():
 		start_scale = stop_scale * original_scale.x
 		end_scale = center_scale * original_scale.x
 		start_roll_speed = 0
-		end_roll_speed = target_roll_speed
+		end_roll_speed = roll_speed
 
 
 func rolling_wheel(delta: float) -> void:
@@ -98,7 +91,7 @@ func rolling_wheel(delta: float) -> void:
 	front_wheel.rotation += roll_speed * delta
 	back_wheel.rotation += roll_speed * delta
 	# 使汽车偶尔上下抖动
-	var shake_amount: float   = 2
+	var shake_amount: float   = 1
 	var shake_offset: Vector2 = Vector2(position.x,
 	original_y+ randf_range(0, shake_amount))
 	position.y = shake_offset.y
