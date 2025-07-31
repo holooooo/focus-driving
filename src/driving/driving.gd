@@ -30,7 +30,6 @@ func _ready() -> void:
 	setup_speed()
 
 func setup_speed()->void:
-	print(background)
 	if !background:
 		return
 	var children: Array[Node] = background.get_children()
