@@ -6,3 +6,4 @@
 addons
 .editorconfig
 *.aseprite
+/tmp

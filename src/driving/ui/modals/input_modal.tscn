@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcx7n4h8f2q1m"]
+
+[ext_resource type="Script" path="res://src/driving/ui/modals/input_modal.gd" id="1_input"]
+
+[node name="InputModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_input")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(350, 250)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "新建项目"
+horizontal_alignment = 1
+
+[node name="InputField" type="LineEdit" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "请输入项目名称"
+max_length = 25
+
+[node name="ErrorLabel" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "错误信息"
+horizontal_alignment = 1
+modulate = Color(1, 0.3, 0.3, 1)
+
+[node name="VSeparator" type="Control" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "取消"
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "确认"

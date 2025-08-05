@@ -1,0 +1,190 @@
+[gd_scene load_steps=15 format=3 uid="uid://bvx8j2k3l4m5n"]
+
+[ext_resource type="Script" uid="uid://umoxcui6xn3y" path="res://src/driving/ui/focus_ui.gd" id="1_focus_ui"]
+[ext_resource type="PackedScene" uid="uid://bh7lam2n3p4q5" path="res://src/driving/ui/components/project_selector.tscn" id="2_project_selector"]
+[ext_resource type="PackedScene" uid="uid://c2x8iak4j5l6m" path="res://src/driving/ui/components/focus_timer.tscn" id="3_focus_timer"]
+[ext_resource type="Texture2D" uid="uid://g1vyto608t2f" path="res://resource/icon/kenney_game-icons/PNG/White/1x/signal3.png" id="4_2t724"]
+[ext_resource type="Theme" uid="uid://x8455rt47588" path="res://src/default_ui_theme.tres" id="4_687eo"]
+[ext_resource type="PackedScene" uid="uid://dcx7n4h8f2q1m" path="res://src/driving/ui/modals/input_modal.tscn" id="4_input_modal"]
+[ext_resource type="Texture2D" uid="uid://cxq4rr1dr2nse" path="res://resource/icon/kenney_game-icons/PNG/White/1x/cross.png" id="5_akwio"]
+[ext_resource type="PackedScene" uid="uid://b8qy3x1vn8c8r" path="res://src/driving/ui/modals/confirm_modal.tscn" id="5_confirm_modal"]
+[ext_resource type="Script" uid="uid://d3xqr1xhmsh28" path="res://src/driving/ui/components/long_press_button.gd" id="5_e527k"]
+[ext_resource type="Texture2D" uid="uid://t72erd67utta" path="res://resource/icon/kenney_game-icons/PNG/White/1x/cart.png" id="5_hj0kq"]
+[ext_resource type="Texture2D" uid="uid://ehuaic1iiaf" path="res://resource/icon/kenney_game-icons/PNG/White/1x/gear.png" id="6_sitap"]
+[ext_resource type="Texture2D" uid="uid://dv7soojsehcvm" path="res://resource/icon/kenney_game-icons/PNG/White/1x/pause.png" id="7_bda3f"]
+[ext_resource type="Texture2D" uid="uid://c3rtdw2t2avb4" path="res://resource/icon/kenney_game-icons/PNG/White/1x/forward.png" id="8_8b3be"]
+[ext_resource type="Texture2D" uid="uid://bou3sf4bfjqg6" path="res://resource/icon/kenney_game-icons/PNG/White/1x/checkmark.png" id="9_2t724"]
+
+[node name="FocusUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_687eo")
+script = ExtResource("1_focus_ui")
+
+[node name="TopArea" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 150.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+
+[node name="FocusTimer" parent="TopArea" instance=ExtResource("3_focus_timer")]
+layout_mode = 1
+
+[node name="SettingsArea" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 80.0
+offset_right = -50.0
+offset_bottom = 130.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="StatsButton" type="Button" parent="SettingsArea/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+icon = ExtResource("4_2t724")
+
+[node name="ShopButton" type="Button" parent="SettingsArea/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+icon = ExtResource("5_hj0kq")
+
+[node name="SettingsButton" type="Button" parent="SettingsArea/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+icon = ExtResource("6_sitap")
+
+[node name="BottomArea" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="InitialState" type="Control" parent="BottomArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomArea/InitialState"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="ProjectSelector" parent="BottomArea/InitialState/VBoxContainer" instance=ExtResource("2_project_selector")]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_687eo")
+
+[node name="Control" type="Control" parent="BottomArea/InitialState/VBoxContainer"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="BottomArea/InitialState/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="AddButton" type="Button" parent="BottomArea/InitialState/VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme = ExtResource("4_687eo")
+text = "新建旅途"
+
+[node name="StartButton" type="Button" parent="BottomArea/InitialState/VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme = ExtResource("4_687eo")
+text = "开始驾驶"
+
+[node name="FocusState" type="Control" parent="BottomArea"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomArea/FocusState"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -20.0
+offset_right = 200.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="BottomArea/FocusState/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("5_akwio")
+icon_alignment = 1
+script = ExtResource("5_e527k")
+progress_color = Color(0.9607843, 0.23137255, 0.34117648, 1)
+progress_radius = 24.0
+
+[node name="PauseButton" type="Button" parent="BottomArea/FocusState/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("7_bda3f")
+
+[node name="ResumeButton" type="Button" parent="BottomArea/FocusState/HBoxContainer"]
+visible = false
+layout_mode = 2
+icon = ExtResource("8_8b3be")
+
+[node name="CompleteButton" type="Button" parent="BottomArea/FocusState/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("9_2t724")
+script = ExtResource("5_e527k")
+progress_color = Color(0.019607844, 0.76862746, 0.41960785, 1)
+progress_radius = 24.0
+
+[node name="InputModal" parent="." instance=ExtResource("4_input_modal")]
+visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmModal" parent="." instance=ExtResource("5_confirm_modal")]
+visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
