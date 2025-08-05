@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://x8455rt47588"]
+
+[ext_resource type="FontFile" uid="uid://oritvbydbrk0" path="res://resource/imgs/fonts/fusion-pixel-12px-monospaced-zh_hans.ttf" id="1_fs8ev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwkl8"]
+bg_color = Color(0.28235295, 0.32941177, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fs8ev"]
+bg_color = Color(0.34117648, 0.37254903, 0.8117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb7xn"]
+bg_color = Color(0.34117648, 0.37254903, 0.8117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fqvj"]
+bg_color = Color(0.23529412, 0.2509804, 0.7764706, 1)
+
+[resource]
+default_font = ExtResource("1_fs8ev")
+default_font_size = 24
+Button/colors/font_color = Color(1, 0.827451, 0.16470589, 1)
+Button/colors/font_hover_color = Color(1, 0.7529412, 0.28235295, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.65882355, 0.003921569, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_iwkl8")
+Button/styles/focus = SubResource("StyleBoxFlat_fs8ev")
+Button/styles/hover = SubResource("StyleBoxFlat_gb7xn")
+Button/styles/normal = SubResource("StyleBoxFlat_6fqvj")
